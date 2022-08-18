@@ -1,12 +1,13 @@
 import numpy as np
 from variable import Variable
+from utils import as_array
 
 class Function:
     def __call__(self, input: Variable) -> Variable:
         self.input = input
         x = input.data
         y = self.forward(x)
-        output = Variable(y)
+        output = Variable(as_array(y))
         output.set_creator(self)
         self.output = output
         return output
@@ -34,4 +35,11 @@ class Exp(Function):
         x = self.input.data
         gx = np.exp(x) * gy
         return gx
-        
+
+def square(x):
+    f = Square()
+    return f(x)
+
+def exp(x):
+    f = Exp()
+    return f(x)

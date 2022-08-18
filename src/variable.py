@@ -1,16 +1,21 @@
-from pyclbr import Function
 import numpy as np
 
 class Variable:
     def __init__(self, data: np.ndarray):
+        if data is not None:
+            if not isinstance(data, np.ndarray):
+                raise TypeError(f'{type(data)}은(는) 지원하는 데이터 형식이 아닙니다.')
         self.data = data
         self.grad = None
         self.creator = None
 
-    def set_creator(self, func: Function):
+    def set_creator(self, func):
         self.creator = func
 
     def backward(self):
+        if self.grad is None:
+            self.grad = np.ones_like(self.data)
+
         funcs = [self.creator]
         
         while funcs:
