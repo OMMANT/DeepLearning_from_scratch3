@@ -1,6 +1,6 @@
 import numpy as np
-from variable import Variable
-from utils import as_array
+from dezero.variable import Variable
+from dezero.utils import as_array
 
 class Function:
     def __call__(self, input: Variable) -> Variable:

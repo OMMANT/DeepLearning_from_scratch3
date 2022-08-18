@@ -1,6 +1,6 @@
 import numpy as np
-from variable import Variable
-from functions import *
+from dezero.variable import Variable
+from dezero.functions import *
 
 def numerical_diff(f, x, eps=1e-4):
     x0 = Variable(x.data - eps)
